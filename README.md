@@ -1,6 +1,6 @@
 # Curve Fever Stats Export
 
-A Firefox extension that exports your match results from [Curve Fever Pro](https://curvefever.pro) to a JSON file, and can import that file into a Curve Fever leaderboard dashboard right away.
+A Firefox and Chrome extension that exports your match results from [Curve Fever Pro](https://curvefever.pro) to a JSON file, and can import that file into a Curve Fever leaderboard dashboard right away.
 
 Curve Fever has no API for match history, so the extension does what you would do by hand: it opens your profile's **Matches** tab, scrolls back as far as you ask, opens each match and reads the final scores, players and powers.
 
@@ -26,6 +26,15 @@ The extension doesn't update itself – install a newer release the same way; se
 
 Temporary add-ons are removed when Firefox restarts. After changing code, press **Reload** on the extension in `about:debugging` and reload the curvefever.pro tab.
 
+## Install (Chrome)
+
+The extension isn't on the Chrome Web Store; install it in developer mode:
+1. Download the source – **Code → Download ZIP** on GitHub, or the *Source code (zip)* of the latest [release](https://github.com/murrayhack/curvestats/releases/latest) – and unzip it.
+2. Open `chrome://extensions` and turn on **Developer mode** (top right).
+3. Click **Load unpacked** and pick the `extension` folder.
+
+Chrome lists two harmless warnings about `browser_specific_settings` and `background.scripts` – those keys are for Firefox. Keep the folder where it is: Chrome loads the extension from it every time it starts. To update, replace the folder's contents with a newer version and press the reload button on the extension in `chrome://extensions`, then reload any open curvefever.pro tab.
+
 ## Usage
 
 1. Log in to [curvefever.pro](https://curvefever.pro).
@@ -36,8 +45,8 @@ Exports are slow by nature: each match is opened one at a time, so a few seconds
 
 ### Dashboard import
 
-1. Open the extension's settings (popup → **Set dashboard URL**, or `about:addons` → the extension → **Preferences**).
-2. Enter the dashboard's address, e.g. `https://curvefever.example.com`, and click **Save**. Firefox asks for permission to access that site – this is needed to hand the file to the dashboard.
+1. Open the extension's settings (popup → **Set dashboard URL**, or the extension's *Options* / *Preferences* in the browser's extension settings).
+2. Enter the dashboard's address, e.g. `https://curvefever.example.com`, and click **Save**. The browser asks for permission to access that site – this is needed to hand the file to the dashboard.
 3. Tick **Open dashboard** in the popup. After an export, `<dashboard>/import` opens and the file is dropped onto its import zone. If you are logged out, log in and the import continues.
 
 The JSON file is always downloaded as well, so you keep a copy.
@@ -91,10 +100,6 @@ Firefox only installs signed add-ons permanently. This repo signs them as **unli
 4. Copy the signed file to `curvestats-X.Y.Z.xpi` and publish it: `gh release create vX.Y.Z curvestats-X.Y.Z.xpi --title "X.Y.Z" --notes "…"`.
 
 If you fork this, change `browser_specific_settings.gecko.id` in the manifest to an id of your own – AMO ties the id to the account that first signed it.
-
-## Todo
-
-- [ ] **Chrome support.** The manifest and code are written to work in Chrome as well (Manifest V3, `chrome.*` APIs, a background service worker entry), but it hasn't been tested there yet. Loading it unpacked via `chrome://extensions` → Developer mode → **Load unpacked** should work; distributing it to others needs the Chrome Web Store (unlisted is fine).
 
 ## Credits
 
