@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font: 13px system-ui, sans-serif; width: 240px; margin: 12px; color: #112d45; }
+    h1 { font-size: 14px; margin: 0 0 10px; }
+    label { display: flex; justify-content: space-between; align-items: center; margin: 6px 0; }
+    label.check { justify-content: flex-start; gap: 6px; }
+    input[type=number] { width: 70px; }
+    button { width: 100%; margin-top: 10px; padding: 7px; font-weight: 600; cursor: pointer; }
+    #status { margin-top: 8px; min-height: 1em; color: #555; }
+    .err { color: #b00020 !important; }
+    .hint { font-size: 11px; color: #777; margin: -2px 0 0 22px; }
+    a { color: #1a73e8; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Curve Fever export</h1>
+  <label>Days back <input id="daysBack" type="number" min="1" value="1"></label>
+  <label>Max matches <input id="limit" type="number" min="1" placeholder="all"></label>
+  <label class="check"><input id="openDashboard" type="checkbox"> Open dashboard</label>
+  <div class="hint" id="dashboardHint"></div>
+  <button id="run">Export</button>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
